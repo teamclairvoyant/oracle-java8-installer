@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 #jinstall - Command line script to easily add new java directories to
 #'alternatives'. This sets the java as default, and you can switch your
 #default java with update-java-alternatives
@@ -17,10 +17,10 @@ VER='0.6alpha'
 case $(dpkg --print-architecture) in
 'i386'|'i586'|'i686') arch=i386; dld=i586;
   SHA256SUM_TGZ="f7d6cf1468c5e71ff097bec0189caccdd8e709a2a88a2c9849ad6200c0f33d4c" #must be modified for each release
-  ;; 
+  ;;
 'amd64'  ) arch=amd64; dld=x64;
-  SHA256SUM_TGZ="97e30203f1aef324a07c94d9d078f5d19bb6c50e638e4492722debca588210bc" #must be modified for each release 
-  ;; 
+  SHA256SUM_TGZ="cb700cc0ac3ddc728a567c350881ce7e25118eaf7ca97ca9705d4580c506e370" #must be modified for each release
+  ;;
 arm*      )
   arch=arm
 	if [ `uname -m` = "armv7l" ] || [ `uname -m` = "armv6l" ]; then
@@ -54,18 +54,18 @@ esac
 ########Variables
 
 if [ ! $arch = "arm" ]; then
-	JAVA_VERSION=8u121 #must be modified for each release jdk-8u5-linux-x64.tar.gz
-	J_DIR=jdk1.8.0_121 #must be modified for each release
+	JAVA_VERSION=8u201 #must be modified for each release jdk-8u5-linux-x64.tar.gz
+	J_DIR=jdk1.8.0_201 #must be modified for each release
 	FILENAME=jdk-${JAVA_VERSION}-linux-${dld}.tar.gz
-	PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/$FILENAME #must be modified for each release
+  PARTNER_URL=https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/$FILENAME #must be modified for each release
 	for JAVA_VERSION_OLD2 in `seq 1 120`; do #must be modified for each release
 	   FILENAMES_OLD2="jdk-8u${JAVA_VERSION_OLD2}-linux-${dld}*.tar.gz $FILENAMES_OLD2"
 	done
 else
-	JAVA_VERSION=8u121 #must be modified for each release jdk-8-linux-arm-vfp-hflt.tar.gz
-	J_DIR=jdk1.8.0_121 #must be modified for each release
+	JAVA_VERSION=8u201 #must be modified for each release jdk-8-linux-arm-vfp-hflt.tar.gz
+	J_DIR=jdk1.8.0_201 #must be modified for each release
 	FILENAME=jdk-${JAVA_VERSION}-linux-${dld}.tar.gz
-	PARTNER_URL=http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/$FILENAME #must be modified for each release
+  PARTNER_URL=https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/$FILENAME #must be modified for each release
 	for JAVA_VERSION_OLD1 in `seq 1 120`; do #must be modified for each release
 		FILENAMES_OLD1="jdk-8u${JAVA_VERSION_OLD1}-linux-${dld}*.tar.gz $FILENAMES_OLD1 jdk-8-*.tar.gz"
 	done
@@ -266,7 +266,7 @@ for f in $J_INSTALL_DIR/jre/bin/*; do
 						[ ! $name = "javaws" ] && [ ! $name = "jvisualvm" ] && [ ! $name = "jmc" ] && echo "jre $name $J_INSTALL_DIR/jre/bin/$name" >> /usr/lib/jvm/.java-8-oracle.jinfo
 					fi
          else #no man pages available
-            # [ ! $name = "javaws.real" ] = skip javaws.real     
+            # [ ! $name = "javaws.real" ] = skip javaws.real
             [ ! $name = "javaws.real" ] && update-alternatives --install /usr/bin/$name $name $J_INSTALL_DIR/jre/bin/$name $PRIORITY
             [ ! $name = "javaws.real" ] && echo "jre $name $J_INSTALL_DIR/jre/bin/$name" >> /usr/lib/jvm/.java-8-oracle.jinfo
          fi
