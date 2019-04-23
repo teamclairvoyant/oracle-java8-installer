@@ -1,8 +1,14 @@
+oracle-java8-installer (8u201-2~clairvoyant~1) xenial; urgency=medium
+
+  * Fix installer as Oracle has removed unauthenticated access to tarball.
+
+ -- Michael Arnold <michael.arnold@clairvoyantsoft.com>  Mon, 22 Apr 2019 17:25:25 -0500
+
 oracle-java8-installer (8u201-1~webupd8~1) xenial; urgency=medium
 
   * New Release
 
- -- Jeff Weiss <jweiss@enbala.com> Tue, 15 Jan 2019 12:50:55 -0800
+ -- Jeff Weiss <jweiss@enbala.com>  Tue, 15 Jan 2019 12:50:55 -0800
 
 oracle-java8-installer (8u121-1~webupd8~1) xenial; urgency=medium
 
